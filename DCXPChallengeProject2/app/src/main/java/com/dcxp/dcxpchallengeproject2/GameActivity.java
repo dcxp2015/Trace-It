@@ -2,13 +2,17 @@ package com.dcxp.dcxpchallengeproject2;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
 
+import com.dcxp.dcxpchallengeproject2.loader.LevelLoader;
+
 
 public class GameActivity extends ActionBarActivity {
+    public static final String TAG = "com.dcxp.traceit";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

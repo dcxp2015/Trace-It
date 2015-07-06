@@ -3,25 +3,24 @@ package com.dcxp.dcxpchallengeproject2;
 /**
  * Created by Daniel on 7/6/2015.
  */
-public class Vertex {
-    private final int x, y;
-    private final int[] edges;
+public final class Vertex {
+    private final float x, y;
 
-    public Vertex(final int x, final int y, final int[] edges) {
+    public Vertex(final float x, final float y) {
         this.x = x;
         this.y = y;
-        this.edges = edges;
     }
 
-    public int[] getEdges() {
-        return edges;
+    @Override
+    public String toString() {
+        return "x: " + x + "\ny: " + y;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 }
