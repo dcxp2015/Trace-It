@@ -21,8 +21,10 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        Level level = LevelLoader.load(this, "test.json");
+
         FrameLayout container = (FrameLayout) findViewById(R.id.fl_canvasContainer);
-        container.addView(new GameCanvas(this));
+        container.addView(new GameCanvas(this, level));
     }
 
     @Override

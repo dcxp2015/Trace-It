@@ -18,7 +18,7 @@ public class Level {
         return edgeMatrix;
     }
 
-    public Vertex[] getVertexArray() {
+    public Vertex[] getVertices() {
         return vertexArray;
     }
 }

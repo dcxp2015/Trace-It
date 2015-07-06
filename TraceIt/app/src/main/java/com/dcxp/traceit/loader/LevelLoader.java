@@ -1,5 +1,6 @@
 package com.dcxp.traceit.loader;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.dcxp.traceit.Level;
@@ -22,14 +23,14 @@ import org.json.*;
  * Created by Daniel on 7/6/2015.
  */
 public class LevelLoader {
-    public static final String TAG = "loader";
+    public static final String TAG = "com.dcxp.traceit.loader";
 
-    public static Level load(InputStream inputStream) {
+    public static Level load(Context context, String level) {
         Vertex[] vertices = null;
         int[][] edges = null;
 
         try {
-            JSONObject json = new JSONObject(read(inputStream));
+            JSONObject json = new JSONObject(read(context.getAssets().open(level)));
             JSONArray vertexArray = json.getJSONArray("vertices");
             JSONArray edgeMatrix = json.getJSONArray("edges");
 
