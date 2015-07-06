@@ -1,4 +1,4 @@
-package com.dcxp.dcxpchallengeproject2;
+package com.dcxp.traceit;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -1,31 +1,24 @@
-package com.dcxp.dcxpchallengeproject2;
+package com.dcxp.traceit;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceView;
-import android.widget.FrameLayout;
 
-import com.dcxp.dcxpchallengeproject2.loader.LevelLoader;
+import com.dcxp.traceit.R;
 
 
-public class GameActivity extends ActionBarActivity {
-    public static final String TAG = "com.dcxp.traceit";
+public class MenuActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-
-        FrameLayout container = (FrameLayout) findViewById(R.id.fl_canvasContainer);
-        container.addView(new GameCanvas(this));
+        setContentView(R.layout.activity_menu);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_game, menu);
+        getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 

@@ -1,9 +1,9 @@
-package com.dcxp.dcxpchallengeproject2.loader;
+package com.dcxp.traceit.loader;
 
 import android.util.Log;
 
-import com.dcxp.dcxpchallengeproject2.Level;
-import com.dcxp.dcxpchallengeproject2.Vertex;
+import com.dcxp.traceit.Level;
+import com.dcxp.traceit.Vertex;
 
 import org.json.JSONArray;
 
