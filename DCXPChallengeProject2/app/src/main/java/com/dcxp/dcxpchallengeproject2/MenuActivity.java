@@ -1,28 +1,24 @@
-package com.dpc.dcxpchallengeproject2;
+package com.dcxp.dcxpchallengeproject2;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SurfaceView;
-import android.widget.FrameLayout;
+
+import com.dcxp.dcxpchallengeproject2.R;
 
 
-public class GameActivity extends ActionBarActivity {
+public class MenuActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
-
-        FrameLayout container = (FrameLayout) findViewById(R.id.fl_canvasContainer);
-
-        container.addView(new GameCanvas(this));
+        setContentView(R.layout.activity_menu);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_game, menu);
+        getMenuInflater().inflate(R.menu.menu_menu, menu);
         return true;
     }
 
