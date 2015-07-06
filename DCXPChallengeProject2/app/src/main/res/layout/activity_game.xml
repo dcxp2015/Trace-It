@@ -11,11 +11,16 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/timer"
         android:id="@+id/txtv_timer"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <FrameLayout
         android:id="@+id/fl_canvasContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/txtv_timer"></FrameLayout>
 
 </RelativeLayout>
