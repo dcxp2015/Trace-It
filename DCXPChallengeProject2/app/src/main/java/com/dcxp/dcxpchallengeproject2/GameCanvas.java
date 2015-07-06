@@ -12,7 +12,7 @@ import android.widget.Toast;
  * Created by Daniel on 7/6/2015.
  */
 public class GameCanvas extends View implements View.OnTouchListener {
-    private static final String TAG = "com.dcxp.dcxpchallengeproject2";
+    private static final String TAG = "com.dcxp.dcxp";
     private Paint paint;
 
     public GameCanvas(Context context) {
@@ -28,15 +28,15 @@ public class GameCanvas extends View implements View.OnTouchListener {
     }
 
     private void onTouchUp() {
-        Log.d(TAG, "onTouchUp");
+
     }
 
     private void onTouchDown() {
-        Log.d(TAG, "onTouchDown");
+
     }
 
     private void onTouchMove() {
-        Log.d(TAG, "onTouchMove");
+
     }
 
     @Override
