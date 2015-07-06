@@ -25,3 +25,19 @@ proguard/
 
 # Log Files
 *.log
+.idea/.name
+.idea/compiler.xml
+.idea/DCXPChallenge.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/copyright/profiles_settings.xml
+DCXPChallengeProject2/app/.idea/.name
+DCXPChallengeProject2/app/.idea/compiler.xml
+DCXPChallengeProject2/app/.idea/gradle.xml
+DCXPChallengeProject2/app/.idea/misc.xml
+DCXPChallengeProject2/app/.idea/modules.xml
+DCXPChallengeProject2/app/.idea/vcs.xml
+DCXPChallengeProject2/app/.idea/workspace.xml
+DCXPChallengeProject2/app/.idea/copyright/profiles_settings.xml

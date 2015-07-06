@@ -1,17 +1,28 @@
-package com.dpc.dcxpchallengeproject2;
+package com.dcxp.traceit;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.SurfaceView;
+import android.widget.FrameLayout;
+
+import com.dcxp.traceit.GameCanvas;
+import com.dcxp.traceit.R;
+import com.dcxp.traceit.loader.LevelLoader;
 
 
 public class GameActivity extends ActionBarActivity {
+    public static final String TAG = "com.dcxp.traceit";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        FrameLayout container = (FrameLayout) findViewById(R.id.fl_canvasContainer);
+        container.addView(new GameCanvas(this));
     }
 
     @Override
