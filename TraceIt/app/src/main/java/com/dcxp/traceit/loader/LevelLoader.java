@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.dcxp.traceit.Level;
+import com.dcxp.traceit.Utils;
 import com.dcxp.traceit.Vertex;
 
 import org.json.JSONArray;
@@ -21,7 +22,7 @@ public class LevelLoader {
         int[][] edges = null;
 
         try {
-            JSONObject json = new JSONObject(read(context.getAssets().open(level)));
+            JSONObject json = new JSONObject(Utils.fullyReadInputStream(context.getAssets().open(level)));
             JSONArray vertexArray = json.getJSONArray("vertices");
             JSONArray edgeMatrix = json.getJSONArray("edges");
 
@@ -73,18 +74,6 @@ public class LevelLoader {
         }
 
         return matrix;
-    }
-
-    private static String read(InputStream inputStream) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder builder = new StringBuilder();
-        String current;
-
-        while((current = reader.readLine()) != null) {
-            builder.append(current);
-        }
-
-        return builder.toString();
     }
 
 }
