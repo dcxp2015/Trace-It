@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -94,6 +95,10 @@ public class GameCanvas extends View implements View.OnTouchListener {
         paint.setColor(oldColor);
     }
 
+    private boolean solved() {
+        return allVerticesConnected();
+    }
+
     private void connect(Vertex v1, Vertex v2) {
         int v1Index = indexOf(v1);
         int v2Index = indexOf(v2);
@@ -110,6 +115,31 @@ public class GameCanvas extends View implements View.OnTouchListener {
         }
 
         return false;
+    }
+
+    private void resetPuzzle() {
+        // Grab a copy of the original edge matrix
+        edgeMatrix = level.getEdgeMatrix();
+
+        currentLine = null;
+
+        lines.clear();
+
+        invalidate();
+    }
+
+    private boolean allVerticesConnected() {
+        int count = 0;
+
+        for(int i = 0; i < edgeMatrix.length; i++) {
+            for(int j = 0; j < edgeMatrix[i].length; j++) {
+                if(edgeMatrix[i][j] == 1) {
+                    count++;
+                }
+            }
+        }
+
+        return count == 0;
     }
 
     private boolean connected(Vertex v1, Vertex v2) {
@@ -147,15 +177,22 @@ public class GameCanvas extends View implements View.OnTouchListener {
         line.setY1(vertex.getY());
     }
 
+    private boolean checkGameOver() {
+        if(solved()) {
+            Toast.makeText(getContext(), "You solved the puzzle!", Toast.LENGTH_SHORT).show();
+            resetPuzzle();
+            return true;
+        }
+
+        return false;
+    }
+
     private void onTouchUp(float x, float y) {
-        // Grab a copy of the original edge matrix
-        edgeMatrix = level.getEdgeMatrix();
+        if(!checkGameOver()) {
+            Toast.makeText(getContext(), "Try again!", Toast.LENGTH_SHORT).show();
+        }
 
-        currentLine = null;
-
-        lines.clear();
-
-        invalidate();
+        resetPuzzle();
     }
 
     private void onTouchDown(float x, float y) {
@@ -177,7 +214,10 @@ public class GameCanvas extends View implements View.OnTouchListener {
                 if(lastVertex != null) {
                     if(connectable(vertex, lastVertex)) {
                         connect(vertex, lastVertex);
-                        snapLineToDestinationVertex(currentLine, vertex);
+
+                        if(currentLine != null) {
+                            snapLineToDestinationVertex(currentLine, vertex);
+                        }
 
                         lastVertex = vertex;
 
@@ -192,7 +232,7 @@ public class GameCanvas extends View implements View.OnTouchListener {
             }
         }
 
-        if(currentLine != null) {
+        if(!allVerticesConnected() && currentLine != null) {
             currentLine.setX1(x);
             currentLine.setY1(y);
         }
