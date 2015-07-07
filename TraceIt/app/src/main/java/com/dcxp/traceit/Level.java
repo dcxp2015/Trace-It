@@ -1,9 +1,5 @@
 package com.dcxp.traceit;
 
-import com.dcxp.traceit.Vertex;
-
-import java.util.Arrays;
-
 /**
  * Created by Daniel on 7/6/2015.
  */

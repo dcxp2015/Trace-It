@@ -5,13 +5,10 @@ import android.graphics.Canvas;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,7 +59,7 @@ public class GameCanvas extends View implements View.OnTouchListener {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(Vertex.RADIUS);
+        paint.setStrokeWidth(Vertex.getRadius());
 
         paintBlueprint(canvas);
 
@@ -167,15 +164,15 @@ public class GameCanvas extends View implements View.OnTouchListener {
     }
 
     private void paintVertex(Canvas canvas, Vertex vertex) {
-        canvas.drawCircle(vertex.getX(), vertex.getY(), Vertex.RADIUS, paint);
+        canvas.drawCircle(vertex.getX(), vertex.getY(), Vertex.getRadius(), paint);
     }
 
     private void paintTouchCircle(Canvas canvas, Vertex vertex) {
-        canvas.drawCircle(vertex.getX(), vertex.getY(), Vertex.VERTEX_SNAP_RANGE, paint);
+        canvas.drawCircle(vertex.getX(), vertex.getY(), Vertex.getVertexSnapRange(), paint);
     }
 
     private boolean pointInVertex(Vertex vertex, float x, float y) {
-        return Math.sqrt(Math.pow(x - vertex.getX(), 2) + Math.pow(y - vertex.getY(), 2)) <= Vertex.VERTEX_SNAP_RANGE;
+        return Math.sqrt(Math.pow(x - vertex.getX(), 2) + Math.pow(y - vertex.getY(), 2)) <= Vertex.getVertexSnapRange();
     }
 
     private void snapLineToDestinationVertex(Line line, Vertex vertex) {
