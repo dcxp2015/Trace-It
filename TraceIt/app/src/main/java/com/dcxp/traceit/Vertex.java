@@ -4,23 +4,47 @@ package com.dcxp.traceit;
  * Created by Daniel on 7/6/2015.
  */
 public final class Vertex {
-    private final float x, y;
+    public static final float RADIUS = 10;
+    public static final float VERTEX_SNAP_RANGE = RADIUS * 4;
+    private static int parentWidth, parentHeight;
 
-    public Vertex(final float x, final float y) {
-        this.x = x;
-        this.y = y;
+    // Percent of the width and height that this vertex is placed at
+    private final float relativeX, relativeY;
+
+    public Vertex(final float relativeX, final float relativeY) {
+        this.relativeX = relativeX;
+        this.relativeY = relativeY;
     }
 
-    @Override
-    public String toString() {
-        return "x: " + x + "\ny: " + y;
+    public float getRelativeX() {
+        return relativeX;
+    }
+
+    public float getRelativeY() {
+        return relativeY;
     }
 
     public float getX() {
-        return x;
+        return relativeX * parentWidth;
     }
 
     public float getY() {
-        return y;
+        return relativeY * parentHeight;
+    }
+
+    public static void setParentWidth(int parentWidth) {
+        Vertex.parentWidth = parentWidth;
+    }
+
+    public static void setParentHeight(int parentHeight) {
+        Vertex.parentHeight = parentHeight;
+    }
+
+    public static int getParentHeight() {
+        return parentHeight;
+    }
+
+    public static int getParentWidth() {
+        return parentWidth;
     }
 }
