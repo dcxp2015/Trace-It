@@ -1,11 +1,16 @@
 package com.dcxp.traceit;
 
+import android.app.Activity;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
+import android.widget.Chronometer;
 import android.widget.FrameLayout;
 
 import com.dcxp.traceit.GameCanvas;
@@ -13,7 +18,7 @@ import com.dcxp.traceit.R;
 import com.dcxp.traceit.loader.LevelLoader;
 
 
-public class GameActivity extends ActionBarActivity {
+public class GameActivity extends Activity {
     public static final String TAG = "com.dcxp.traceit";
 
     @Override
@@ -21,26 +26,15 @@ public class GameActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+
         Level level = LevelLoader.load(this, "test.json");
 
         FrameLayout container = (FrameLayout) findViewById(R.id.fl_canvasContainer);
         container.addView(new GameCanvas(this, level));
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_game, menu);
-        return true;
-    }
+        Chronometer chronometer = (Chronometer) findViewById(R.id.cnm_timer);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        chronometer.start();
     }
 }
