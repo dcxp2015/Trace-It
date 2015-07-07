@@ -31,6 +31,7 @@ public class GameCanvas extends View implements View.OnTouchListener {
     private int[][] edgeMatrix;
     private Vertex[] vertices;
 
+    private SoundManager soundManager;
     private List<Line> lines;
     private Line currentLine;
     private Vertex lastVertex;
@@ -39,7 +40,7 @@ public class GameCanvas extends View implements View.OnTouchListener {
         super(context);
 
         this.level = level;
-
+        soundManager = new SoundManager(getContext());
         vertices = level.getVertices();
         edgeMatrix = level.getEdgeMatrix();
         lines = new LinkedList<Line>();
@@ -114,6 +115,8 @@ public class GameCanvas extends View implements View.OnTouchListener {
 
         edgeMatrix[v1Index][v2Index] = -1;
         edgeMatrix[v2Index][v1Index] = -1;
+
+        soundManager.play(SoundManager.SOUND_POP);
     }
 
     private boolean hasConnection(Vertex vertex) {
@@ -258,5 +261,11 @@ public class GameCanvas extends View implements View.OnTouchListener {
         }
 
         return true;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        soundManager.unload();
     }
 }
