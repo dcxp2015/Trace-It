@@ -4,6 +4,8 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.SoundPool;
 
+import com.dcxp.traceit.R;
+
 /**
  * Created by Daniel on 7/7/2015.
  */
