@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.Chronometer;
 import android.widget.FrameLayout;
 
@@ -26,6 +27,7 @@ public class GameActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        getWindow().getDecorView().setSystemUiVisibility(View.INVISIBLE);
 
         Level level = LevelLoader.load(this, "test.json");
 

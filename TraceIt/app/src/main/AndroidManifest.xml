@@ -3,7 +3,7 @@
     package="com.dcxp.traceit" >
 
     <application
-        android:name=".Application"
+        android:name="com.dcxp.traceit.TraceItApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,18 +12,32 @@
             android:name=".activities.GameActivity"
             android:label="@string/app_name" >
             <intent-filter>
+                <action android:name="com.dcxp.traceit.WinDialogFragment" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.MenuActivity"
+            android:label="@string/title_activity_menu" >
+            <intent-filter>
+                <action android:name="com.dcxp.traceit.WinDialogFragment" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.MenuActivity"
-            android:label="@string/title_activity_menu" >
-        </activity>
-        <activity
             android:name=".activities.LeaderboardActivity"
             android:label="@string/title_activity_leaderboard" >
+        </activity>
+        <activity
+            android:name=".activities.LevelActivity"
+            android:label="@string/title_activity_level" >
         </activity>
     </application>
 

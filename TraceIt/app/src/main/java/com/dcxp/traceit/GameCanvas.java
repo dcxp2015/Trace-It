@@ -1,13 +1,18 @@
 package com.dcxp.traceit;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
+
+import com.dcxp.traceit.activities.GameActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +20,7 @@ import java.util.List;
 /**
  * Created by Daniel on 7/6/2015.
  */
-public class GameCanvas extends View implements View.OnTouchListener {
+public class GameCanvas extends View implements View.OnTouchListener, LoseDialogFragment.ILoseDialogListener, WinDialogFragment.IWinDialogListener {
     public static final String TAG = "com.dcxp.traceit";
     private static final int BLUEPRINT_COLOR = Color.GRAY;
     private static final int BLUEPRINT_ALPHA = 50;
@@ -33,8 +38,14 @@ public class GameCanvas extends View implements View.OnTouchListener {
     private Line currentLine;
     private Vertex lastVertex;
 
+    private int lastPaintColor;
+    private int pink, blue;
+
     public GameCanvas(Context context, Level level) {
         super(context);
+
+        pink = getResources().getColor(R.color.customPink);
+        blue = getResources().getColor(R.color.backgroundBlue);
 
         this.level = level;
         soundManager = new SoundManager(getContext());
@@ -79,15 +90,27 @@ public class GameCanvas extends View implements View.OnTouchListener {
             paintTouchCircle(canvas, lastVertex);
         }
 
+        swapPaintColor(Color.BLACK);
+
         for(Line line : lines) {
             canvas.drawLine(line.getX(), line.getY(), line.getX1(), line.getY1(), paint);
         }
+
+        useLastPaintColor();
+    }
+
+    private void swapPaintColor(int color) {
+        lastPaintColor = paint.getColor();
+        paint.setColor(color);
+    }
+
+    private void useLastPaintColor() {
+        paint.setColor(lastPaintColor);
     }
 
     private void paintBlueprint(Canvas canvas) {
-        int oldColor = paint.getColor();
         int oldAlpha = paint.getAlpha();
-        paint.setColor(BLUEPRINT_COLOR);
+        swapPaintColor(Color.GRAY);
         paint.setAlpha(BLUEPRINT_ALPHA);
 
         for(int i = 0; i < edgeMatrix.length; i++) {
@@ -99,7 +122,7 @@ public class GameCanvas extends View implements View.OnTouchListener {
         }
 
         paint.setAlpha(oldAlpha);
-        paint.setColor(oldColor);
+        useLastPaintColor();
     }
 
     private boolean solved() {
@@ -164,11 +187,18 @@ public class GameCanvas extends View implements View.OnTouchListener {
     }
 
     private void paintVertex(Canvas canvas, Vertex vertex) {
+        swapPaintColor(Color.BLACK);
         canvas.drawCircle(vertex.getX(), vertex.getY(), Vertex.getRadius(), paint);
+
+       // swapPaintColor(pink);
+       // canvas.drawCircle(vertex.getX(), vertex.getY(), Vertex.getRadius() * 0.25f, paint);
+      //  useLastPaintColor();/
     }
 
     private void paintTouchCircle(Canvas canvas, Vertex vertex) {
+        swapPaintColor(Color.BLACK);
         canvas.drawCircle(vertex.getX(), vertex.getY(), Vertex.getVertexSnapRange(), paint);
+        useLastPaintColor();
     }
 
     private boolean pointInVertex(Vertex vertex, float x, float y) {
@@ -180,9 +210,20 @@ public class GameCanvas extends View implements View.OnTouchListener {
         line.setY1(vertex.getY());
     }
 
+    private void showWinDialog() {
+        // Unlock next level
+        Toast.makeText(getContext(), level.getNumber() + 1 + "", Toast.LENGTH_SHORT);
+        ((TraceItApplication) getContext().getApplicationContext()).unlockLevel(level.getNumber() + 1);
+        new WinDialogFragment(this).show(((Activity) getContext()).getFragmentManager(), WinDialogFragment.TAG);
+    }
+
+    private void showLoseDialog() {
+        new LoseDialogFragment(this).show(((Activity) getContext()).getFragmentManager(), LoseDialogFragment.TAG);
+    }
+
     private boolean checkGameOver() {
         if(solved()) {
-            Toast.makeText(getContext(), "You solved the puzzle!", Toast.LENGTH_SHORT).show();
+            showWinDialog();
             resetPuzzle();
             return true;
         }
@@ -192,7 +233,7 @@ public class GameCanvas extends View implements View.OnTouchListener {
 
     private void onTouchUp(float x, float y) {
         if(!checkGameOver()) {
-            Toast.makeText(getContext(), "Try again!", Toast.LENGTH_SHORT).show();
+            showLoseDialog();
         }
 
         resetPuzzle();
@@ -264,5 +305,17 @@ public class GameCanvas extends View implements View.OnTouchListener {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         soundManager.unload();
+    }
+
+    @Override
+    public void onReplayClicked() {
+        resetPuzzle();
+    }
+
+    @Override
+    public void onNextArrowClicked() {
+        Intent i = new Intent(getContext(), GameActivity.class);
+        i.putExtra("level", level.getNumber() + 1);
+        getContext().startActivity(i);
     }
 }
