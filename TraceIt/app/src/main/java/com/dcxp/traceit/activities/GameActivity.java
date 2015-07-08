@@ -21,14 +21,9 @@ public class GameActivity extends Activity {
         setContentView(R.layout.activity_game);
 
 
-        Level level = LevelLoader.load(this, "test.json");
+        Level level = LevelLoader.load(this, getIntent().getIntExtra("level", 1));
 
         FrameLayout container = (FrameLayout) findViewById(R.id.fl_canvasContainer);
         container.addView(new GameCanvas(this, level));
-
-        Chronometer chronometer = (Chronometer) findViewById(R.id.cnm_timer);
-
-        chronometer.setBase(SystemClock.elapsedRealtime());
-        chronometer.start();
     }
 }

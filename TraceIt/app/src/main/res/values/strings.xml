@@ -1,9 +1,14 @@
 <resources>
-    <string name="app_name">DCXPChallengeProject2</string>
+    <string name="app_name">TraceIt</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="timer">Time Remaining: </string>
     <string name="title_activity_leaderboard">LeaderboardActivity</string>
+    <string name="title">TraceIt</string>
+    <string name="play">PLAY</string>
+    <string name="tutorial">TUTORIAL</string>
+    <string name="rankings">RANKINGS</string>
+    <string name="title_activity_level">LevelActivity</string>
 </resources>

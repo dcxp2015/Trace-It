@@ -10,18 +10,25 @@ import org.json.JSONArray;
 
 import org.json.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 /**
  * Created by Daniel on 7/6/2015.
  */
 public class LevelLoader {
     public static final String TAG = "com.dcxp.traceit.loader";
+    private static final String BASE = "levels/puzzle";
+    private static final String TYPE = ".JSON";
 
-    public static Level load(Context context, String level) {
+    public static Level load(Context context, int levelNumber) {
         Vertex[] vertices = null;
         int[][] edges = null;
 
         try {
-            JSONObject json = new JSONObject(read(context.getAssets().open(level)));
+            JSONObject json = new JSONObject(read(context.getAssets().open(BASE + levelNumber + TYPE)));
             JSONArray vertexArray = json.getJSONArray("vertices");
             JSONArray edgeMatrix = json.getJSONArray("edges");
 
@@ -31,7 +38,7 @@ public class LevelLoader {
             Log.e(TAG, e.toString());
         }
 
-        return new Level(vertices, edges);
+        return new Level(vertices, edges, levelNumber);
     }
 
     private static Vertex[] parseVertexArray(JSONArray jsonArray) {

@@ -8,12 +8,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.dcxp.traceit.R;
-import com.dcxp.traceit.backend.Leaderboard;
 
 import java.util.List;
 
 
-public class LeaderboardActivity extends Activity implements Leaderboard.ILeaderboardListener {
+public class LeaderboardActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,20 +35,5 @@ public class LeaderboardActivity extends Activity implements Leaderboard.ILeader
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onTopHighScoreLookupCompleted(List<Float> topScores) {
-
-    }
-
-    @Override
-    public String getUsername() {
-        return "daniel";
-    }
-
-    @Override
-    public void onMyHighScoreLookUpCompleted(float highscore) {
-
     }
 }
