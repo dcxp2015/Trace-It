@@ -10,7 +10,7 @@ import com.dcxp.traceit.activities.LevelActivity;
 public class TraceItApplication extends android.app.Application {
     private SharedPreferences levelPrefs;
     private SharedPreferences.Editor editor;
-    private static final String PREFS_KEY = "levelprefs";
+    private static final String PREFS_KEY = "lvls";
 
     @Override
     public void onCreate() {

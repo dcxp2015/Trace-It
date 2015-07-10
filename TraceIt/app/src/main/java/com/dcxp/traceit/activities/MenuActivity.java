@@ -42,7 +42,5 @@ public class MenuActivity extends Activity {
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-
-        title.setTextSize(30 * ((size.x * size.y) / (480f * 800f)));
     }
 }

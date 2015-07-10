@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/gv_levels"
-        android:numColumns="3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:numColumns="auto_fit"
+        android:gravity="center"/>
 </RelativeLayout>

@@ -23,70 +23,14 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play"
+        android:background="@drawable/play_button"
+        android:id="@+id/btn_play"
         android:layout_below="@+id/txtv_title"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:weightSum="20"
-        android:layout_marginTop="69dp">
-
-
-        <ImageButton
-            android:layout_width="175dp"
-            android:layout_height="30dp"
-            android:id="@+id/btn_play"
-            android:layout_weight="2"
-            android:textSize="24sp"
-            android:elevation="15dp"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            android:background="@drawable/play_button"/>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="15dp"
-            android:layout_weight="0.5"
-            android:layout_gravity="center_horizontal" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:weightSum="1"
-            android:id="@+id/linearLayout">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="@string/tutorial"
-                android:id="@+id/button2"
-                android:layout_gravity="center_vertical"
-                android:textSize="17sp"
-                android:textColor="#fff"
-                android:background="@color/customPink"/>
-
-            <Space
-                android:layout_width="25dp"
-                android:layout_height="match_parent" />
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"
-                android:text="@string/rankings"
-                android:textSize="17sp"
-                android:textColor="#fff"
-                android:id="@+id/button3"
-                android:elevation="15dp"
-                android:background="@color/customPink"/>
-        </LinearLayout>
-    </LinearLayout>
-
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp" />
 
 </RelativeLayout>
